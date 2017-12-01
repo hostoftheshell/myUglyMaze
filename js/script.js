@@ -10,8 +10,8 @@ function start() {
 
 let maze = new Array;
 maze = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0],
+    [2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0],
     [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0],
     [0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0],
     [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0],
@@ -37,8 +37,8 @@ maze = [
     [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0],
     [0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3]
 ];
 
 let wall = 0;
@@ -46,8 +46,8 @@ let path = 1;
 let x = 1;
 let y = 2;
 let goal = 3;
-let i = 1;
-let j = 1;
+let i = 0;
+let j = 0;
 
 
 
@@ -108,7 +108,7 @@ function displayMaze() {
 
                 goal.style.width = wallWidth + "px";
                 goal.style.height = wallWidth + "px";
-                goal.style.background = '#00FF00';
+                goal.style.background = '#FFFF00';
             }
 
         }
@@ -165,16 +165,20 @@ function moveAround(direction) {
     switch (move) {
         
         case 38: //UP
-            if (maze[i - 1][j] == 1) { //si la box située dessus est égale à 1(path) alors ok
+            if (maze[i - 1][j] == 1) { //1
                 maze[i - 1][j] = 2;
                 maze[i][j] = 1;
                 i--;
-                console.log(maze);
-                render();
-            } else if(maze[i - 1][j] == 0) { //si la box située dessus est égale à 0(wall) alors ne bouge pas
+            } else if (maze[i - 1][j] == 3) { //3
+                maze[i - 1][j] = 2;
+                maze[i][j] = 1;
+                i--;
+                console.log("WIN")
+            } else if(maze[i - 1][j] == 0) { //0
                 maze[i][j] = 2;
                 console.log("bawwg!");
             }
+            render();
                 break;
             
         case 39: //RIGHT
@@ -182,12 +186,18 @@ function moveAround(direction) {
                 maze[i][j + 1] = 2;
                 maze[i][j] = 1;
                 j++;
-                render();
-                console.log(maze);
-            } else if(maze[i][j + 1] == 0) {
+            } else if (maze[i][j + 1] == 3) { //3
+                maze[i][j + 1] = 2;
+                maze[i][j] = 1;
+                j++;
+                console.log("WIN")
+                
+            } else if 
+                (maze[i][j + 1] == 0) {
                 maze[i][j] = 2;
                 console.log("bawwg!");
             }
+            render();
             break;
             
             case 40: //DOWN
@@ -195,31 +205,55 @@ function moveAround(direction) {
                 maze[i + 1][j] = 2;
                 maze[i][j] = 1;
                 i++;
-                render();
-                console.log(maze);
+            } else if 
+                (maze[i + 1][j] == 3) { //3
+                maze[i + 1][j] = 2;
+                maze[i][j] = 1;
+                i++;
+                console.log("WIN")
+                
             } else if (maze[i + 1][j] == 0 ) {
                 maze[i][j] = 2;
                 console.log("bawwg!");
             }
+            render();
             break;
             
             case 37: //LEFT
             if (maze[i][j - 1] == 1) {
                 maze[i][j - 1] = 2;
                 maze[i][j] = 1;
-                render();
                 j--;
-                console.log(maze);
+            } else if (maze[i][j - 1] == 3) { //3
+                maze[i][j - 1] = 2;
+                maze[i][j] = 1;
+                j--;
+                console.log("WIN")
+                
             } else if (maze[i - 1][j] == 0) {
                 maze[i][j] = 2;
                 console.log("bawwg!");
             }
-                break;
+            render();
+            break;
 
         default:
                 break;
     }
 }
+
+// function winningMazeBoard(direction) {
+    
+//         let move = direction.keyCode;
+        
+//         switch (move) {
+//         case 37, 38, 39, 40 :
+// if((maze[i+1][j] == 3) || (maze[i-1][j] == 3) || (maze[i][j+1] == 3) || (maze[i][j-1] == 3)) {
+//     maze[i][j + 1] = 2;
+// console.log("Win");
+//     }
+// }
+// }
 
 //rendre l'affichage du déplacement
 let render = function renderMaze() {
