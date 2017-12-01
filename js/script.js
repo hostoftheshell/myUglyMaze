@@ -54,7 +54,7 @@ let j = 1;
 
 
 /*GNRL WIDTH*/
-let wallWidth = 5;
+let wallWidth = 15;
 
 
 
