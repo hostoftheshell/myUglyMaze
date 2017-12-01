@@ -1,0 +1,15 @@
+body {
+    background-color: grey;
+    box-sizing: border-box;
+    line-height: 0px;
+}   
+#mazeboard {
+    margin: 0 auto;
+}
+.path, .wall, #player, #goal  {
+    display: inline-block;
+    
+    
+    
+}
+
