@@ -4,8 +4,6 @@ window.onload = function () {
 
 function start() {
     displayMaze();
-    find(maze);
-
 }
 
 
@@ -56,7 +54,7 @@ let j = 1;
 
 
 /*GNRL WIDTH*/
-let wallWidth = 15;
+let wallWidth = 5;
 
 
 
@@ -172,6 +170,7 @@ function moveAround(direction) {
                 maze[i][j] = 1;
                 i--;
                 console.log(maze);
+                render();
             } else if(maze[i - 1][j] == 0) { //si la box située dessus est égale à 0(wall) alors ne bouge pas
                 maze[i][j] = 2;
                 console.log("bawwg!");
@@ -183,29 +182,32 @@ function moveAround(direction) {
                 maze[i][j + 1] = 2;
                 maze[i][j] = 1;
                 j++;
+                render();
                 console.log(maze);
             } else if(maze[i][j + 1] == 0) {
                 maze[i][j] = 2;
                 console.log("bawwg!");
             }
-                break;
+            break;
             
             case 40: //DOWN
             if (maze[i + 1][j] == 1) {
                 maze[i + 1][j] = 2;
                 maze[i][j] = 1;
                 i++;
+                render();
                 console.log(maze);
             } else if (maze[i + 1][j] == 0 ) {
                 maze[i][j] = 2;
                 console.log("bawwg!");
             }
-                break;
-
-        case 37: //LEFT
+            break;
+            
+            case 37: //LEFT
             if (maze[i][j - 1] == 1) {
                 maze[i][j - 1] = 2;
                 maze[i][j] = 1;
+                render();
                 j--;
                 console.log(maze);
             } else if (maze[i - 1][j] == 0) {
@@ -219,9 +221,12 @@ function moveAround(direction) {
     }
 }
 
+//rendre l'affichage du déplacement
+let render = function renderMaze() {
+document.body.innerHTML = ("");
+displayMaze();
 
-
-
+}
 
 
 
